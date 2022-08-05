@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import com.example.marketapp.MainActivity;
+import com.example.marketapp.ui.MainActivity;
 import com.example.marketapp.R;
 import com.example.marketapp.databinding.ActivitySpecificNewsBinding;
 

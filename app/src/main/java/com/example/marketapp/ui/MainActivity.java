@@ -1,4 +1,4 @@
-package com.example.marketapp;
+package com.example.marketapp.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.marketapp.R;
 import com.example.marketapp.databinding.ActivityMainBinding;
 import com.example.marketapp.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

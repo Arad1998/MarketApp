@@ -37,6 +37,9 @@ public class HomeFragment extends Fragment implements CallRetrofit.OnListReadyCa
     private String mParam1;
     private String mParam2;
 
+    public boolean TECH_NEWS = false;
+    public boolean US_NEWS = false;
+
     List<NewsModel> newsModelListOne, newsModelListTwo;
     FragmentHomeBinding binding;
 
@@ -74,6 +77,7 @@ public class HomeFragment extends Fragment implements CallRetrofit.OnListReadyCa
         slideImages.add(new SlideModel(R.drawable.techmology, null));
         binding.slider.setImageList(slideImages, ScaleTypes.CENTER_CROP);
 
+        binding.progressBar.setVisibility(View.VISIBLE);
         new CallRetrofit().makeApiCall(URL, TECH_URL, this);
 
         SnapHelper helper = new PagerSnapHelper();
@@ -84,19 +88,25 @@ public class HomeFragment extends Fragment implements CallRetrofit.OnListReadyCa
 
     @Override
     public void getUSCallbackList(List<NewsModel> usNewsModels) {
+        US_NEWS = true;
         this.newsModelListOne = usNewsModels;
         NewsAdapter adapter = new NewsAdapter(getActivity().getApplicationContext(), this.newsModelListOne);
         binding.horizontalRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         binding.horizontalRecycler.setItemAnimator(new DefaultItemAnimator());
         binding.horizontalRecycler.setAdapter(adapter);
+        if (US_NEWS && TECH_NEWS)
+            binding.progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void getTechCallbackList(List<NewsModel> techNewsModels) {
+        TECH_NEWS = true;
         this.newsModelListTwo = techNewsModels;
         NewsAdapter adapterTwo = new NewsAdapter(getActivity().getApplicationContext(), this.newsModelListTwo);
         binding.verticalRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         binding.verticalRecycler.setItemAnimator(new DefaultItemAnimator());
         binding.verticalRecycler.setAdapter(adapterTwo);
+        if (US_NEWS && TECH_NEWS)
+            binding.progressBar.setVisibility(View.GONE);
     }
 }
